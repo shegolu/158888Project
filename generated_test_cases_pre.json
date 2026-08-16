@@ -1,0 +1,206 @@
+[
+  {
+    "test_id": "TC_001",
+    "test_name": "Verify user registration via UI with valid data",
+    "test_type": "UI",
+    "preconditions": "Browser is open on the Automation Exercise homepage (https://automationexercise.com). No existing account with the test email.",
+    "test_steps": [
+      "Step 1: Navigate to https://automationexercise.com.",
+      "Step 2: Click on 'Signup / Login' button.",
+      "Step 3: Enter a unique name (e.g., 'TestUser') and a valid email address (e.g., 'testuser_ui@example.com') in the 'New User Signup' section.",
+      "Step 4: Click 'Signup' button.",
+      "Step 5: Fill in the account information form with valid details (password: 'Test@123', date of birth, etc.).",
+      "Step 6: Click 'Create Account' button.",
+      "Step 7: Verify the success message 'ACCOUNT CREATED!' is displayed.",
+      "Step 8: Click 'Continue' and then 'Logout'."
+    ],
+    "expected_result": "User is registered successfully and a success message 'ACCOUNT CREATED!' is shown. The user can log in with the new credentials."
+  },
+  {
+    "test_id": "TC_002",
+    "test_name": "Verify user registration via API with valid data",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible. No existing account with the test email.",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/createAccount with form data: name='TestAPIUser', email='testuser_api@example.com', password='Test@123', title='Mr', birth_date='01', birth_month='01', birth_year='1990', firstname='Test', lastname='User', company='TestCo', address1='123 Test St', address2='Apt 4', country='United States', zipcode='12345', state='CA', city='Testville', mobile_number='1234567890'.",
+      "Step 2: Parse the JSON response."
+    ],
+    "expected_result": "Response code 201 and message 'User created successfully'."
+  },
+  {
+    "test_id": "TC_003",
+    "test_name": "Verify user login via UI with valid credentials",
+    "test_type": "UI",
+    "preconditions": "A registered user account exists (e.g., testuser_ui@example.com / Test@123).",
+    "test_steps": [
+      "Step 1: Navigate to https://automationexercise.com.",
+      "Step 2: Click on 'Signup / Login' button.",
+      "Step 3: Enter the registered email and password in the 'Login to your account' section.",
+      "Step 4: Click 'Login' button.",
+      "Step 5: Verify that the user is logged in and the username is displayed in the header."
+    ],
+    "expected_result": "User is logged in successfully and the header shows 'Logged in as TestUser'."
+  },
+  {
+    "test_id": "TC_004",
+    "test_name": "Verify user login via UI with incorrect credentials",
+    "test_type": "UI",
+    "preconditions": "Browser is open on the login page.",
+    "test_steps": [
+      "Step 1: Navigate to https://automationexercise.com/login.",
+      "Step 2: Enter an invalid email (e.g., 'wrong@example.com') and an invalid password (e.g., 'WrongPass').",
+      "Step 3: Click 'Login' button.",
+      "Step 4: Observe the error message."
+    ],
+    "expected_result": "An error message 'Your email or password is incorrect!' is displayed and the user is not logged in."
+  },
+  {
+    "test_id": "TC_005",
+    "test_name": "Verify user login via API with valid credentials",
+    "test_type": "API",
+    "preconditions": "A registered user account exists (e.g., testuser_api@example.com / Test@123).",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/verifyLogin with form data: email='testuser_api@example.com', password='Test@123'.",
+      "Step 2: Parse the JSON response."
+    ],
+    "expected_result": "Response code 200 and message 'User exists!'."
+  },
+  {
+    "test_id": "TC_006",
+    "test_name": "Verify user login via API with incorrect credentials",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible.",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/verifyLogin with form data: email='wrong@example.com', password='WrongPass'.",
+      "Step 2: Parse the JSON response."
+    ],
+    "expected_result": "Response code 404 and message 'User not found!'."
+  },
+  {
+    "test_id": "TC_007",
+    "test_name": "Verify product search via UI with a valid keyword",
+    "test_type": "UI",
+    "preconditions": "Browser is open on the homepage.",
+    "test_steps": [
+      "Step 1: Navigate to https://automationexercise.com.",
+      "Step 2: Locate the search bar at the top of the page.",
+      "Step 3: Enter a product keyword (e.g., 'dress').",
+      "Step 4: Click the search button.",
+      "Step 5: Verify that the search results page displays products related to the keyword."
+    ],
+    "expected_result": "A list of products matching the search keyword is displayed, and the message 'Searched Products' is shown."
+  },
+  {
+    "test_id": "TC_008",
+    "test_name": "Verify product search via UI with an invalid keyword",
+    "test_type": "UI",
+    "preconditions": "Browser is open on the homepage.",
+    "test_steps": [
+      "Step 1: Navigate to https://automationexercise.com.",
+      "Step 2: Enter a non-existent product keyword (e.g., 'xyzabc').",
+      "Step 3: Click the search button.",
+      "Step 4: Observe the search results."
+    ],
+    "expected_result": "No products are found and a message like 'No products found' or an empty product list is displayed."
+  },
+  {
+    "test_id": "TC_009",
+    "test_name": "Verify adding a product to cart via UI",
+    "test_type": "UI",
+    "preconditions": "Browser is open on the homepage. A product is available.",
+    "test_steps": [
+      "Step 1: Navigate to https://automationexercise.com.",
+      "Step 2: Hover over the first product on the homepage.",
+      "Step 3: Click the 'Add to cart' button that appears.",
+      "Step 4: Click 'View Cart' in the modal that appears.",
+      "Step 5: Verify that the product is present in the cart with the correct quantity and price."
+    ],
+    "expected_result": "The product is added to the cart and displayed in the cart page with correct details."
+  },
+  {
+    "test_id": "TC_010",
+    "test_name": "Verify checkout and place order via UI",
+    "test_type": "UI",
+    "preconditions": "User is logged in and has at least one product in the cart.",
+    "test_steps": [
+      "Step 1: Navigate to the cart page.",
+      "Step 2: Click 'Proceed To Checkout' button.",
+      "Step 3: Verify the delivery address and review the order.",
+      "Step 4: Enter a comment in the text area (optional).",
+      "Step 5: Click 'Place Order' button.",
+      "Step 6: Fill in the payment details (name on card, card number, CVC, expiration).",
+      "Step 7: Click 'Pay and Confirm Order' button.",
+      "Step 8: Verify the success message 'Your order has been placed successfully!'."
+    ],
+    "expected_result": "Order is placed successfully and a confirmation message is displayed."
+  },
+  {
+    "test_id": "TC_011",
+    "test_name": "Verify product listing via API",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible.",
+    "test_steps": [
+      "Step 1: Send a GET request to https://automationexercise.com/api/productsList.",
+      "Step 2: Parse the JSON response."
+    ],
+    "expected_result": "Response code 200 and a list of products is returned in the 'products' array."
+  },
+  {
+    "test_id": "TC_012",
+    "test_name": "Verify get user detail by email via API",
+    "test_type": "API",
+    "preconditions": "A registered user account exists (e.g., testuser_api@example.com).",
+    "test_steps": [
+      "Step 1: Send a GET request to https://automationexercise.com/api/getUserDetailByEmail?email=testuser_api@example.com.",
+      "Step 2: Parse the JSON response."
+    ],
+    "expected_result": "Response code 200 and user details (name, email, etc.) are returned in the response."
+  },
+  {
+    "test_id": "TC_013",
+    "test_name": "Verify update account via API",
+    "test_type": "API",
+    "preconditions": "A registered user account exists (e.g., testuser_api@example.com).",
+    "test_steps": [
+      "Step 1: Send a PUT request to https://automationexercise.com/api/updateAccount with form data: name='UpdatedName', email='testuser_api@example.com', password='Test@123', title='Mr', birth_date='01', birth_month='01', birth_year='1990', firstname='Updated', lastname='User', company='TestCo', address1='456 New St', address2='Suite 5', country='United States', zipcode='54321', state='CA', city='Testville', mobile_number='0987654321'.",
+      "Step 2: Parse the JSON response."
+    ],
+    "expected_result": "Response code 200 and message 'User updated successfully'."
+  },
+  {
+    "test_id": "TC_014",
+    "test_name": "Verify delete account via API",
+    "test_type": "API",
+    "preconditions": "A registered user account exists (e.g., testuser_api@example.com).",
+    "test_steps": [
+      "Step 1: Send a DELETE request to https://automationexercise.com/api/deleteAccount with form data: email='testuser_api@example.com', password='Test@123'.",
+      "Step 2: Parse the JSON response."
+    ],
+    "expected_result": "Response code 200 and message 'Account deleted successfully'."
+  },
+  {
+    "test_id": "TC_015",
+    "test_name": "Verify user registration via UI with duplicate email",
+    "test_type": "UI",
+    "preconditions": "An existing account with the email 'testuser_ui@example.com' exists.",
+    "test_steps": [
+      "Step 1: Navigate to https://automationexercise.com.",
+      "Step 2: Click on 'Signup / Login' button.",
+      "Step 3: Enter a name and the existing email 'testuser_ui@example.com' in the 'New User Signup' section.",
+      "Step 4: Click 'Signup' button.",
+      "Step 5: Observe the error message."
+    ],
+    "expected_result": "An error message 'Email Address already exist!' is displayed and the signup process is blocked."
+  },
+  {
+    "test_id": "TC_016",
+    "test_name": "Verify product listing via API with invalid method",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible.",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/productsList.",
+      "Step 2: Parse the JSON response."
+    ],
+    "expected_result": "Response code 405 and message 'This request method is not supported.'"
+  }
+]

@@ -1,0 +1,557 @@
+[
+  {
+    "test_id": "TC_001",
+    "test_name": "Verify user registration with valid data",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Signup / Login' button",
+      "Step 2: Enter name 'TestUser' and email address 'testuser@example.com'",
+      "Step 3: Click 'Signup' button",
+      "Step 4: Fill in account details: Title, Password 'Test@123', Date of Birth",
+      "Step 5: Check 'Sign up for our newsletter!' checkbox",
+      "Step 6: Fill in Address Information: First name, Last name, Company, Address, Country, State, City, Zipcode, Mobile Number",
+      "Step 7: Click 'Create Account' button",
+      "Step 8: Verify 'ACCOUNT CREATED!' is visible",
+      "Step 9: Click 'Continue' button",
+      "Step 10: Verify logged in as 'TestUser'"
+    ],
+    "expected_result": "Account is created successfully, user is logged in and 'Logged in as TestUser' is displayed."
+  },
+  {
+    "test_id": "TC_002",
+    "test_name": "Verify user registration with existing email",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. An account with email 'existing@example.com' already exists.",
+    "test_steps": [
+      "Step 1: Click on 'Signup / Login' button",
+      "Step 2: Enter name 'NewUser' and email address 'existing@example.com'",
+      "Step 3: Click 'Signup' button",
+      "Step 4: Observe the error message"
+    ],
+    "expected_result": "Error message 'Email Address already exist!' is displayed."
+  },
+  {
+    "test_id": "TC_003",
+    "test_name": "Verify user login with correct credentials",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. A valid user account exists with email 'testuser@example.com' and password 'Test@123'.",
+    "test_steps": [
+      "Step 1: Click on 'Signup / Login' button",
+      "Step 2: Enter email address 'testuser@example.com' and password 'Test@123'",
+      "Step 3: Click 'Login' button",
+      "Step 4: Verify that 'Logged in as TestUser' is visible"
+    ],
+    "expected_result": "User is logged in successfully and 'Logged in as TestUser' is displayed."
+  },
+  {
+    "test_id": "TC_004",
+    "test_name": "Verify user login with incorrect credentials",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Signup / Login' button",
+      "Step 2: Enter email address 'wronguser@example.com' and password 'WrongPass123'",
+      "Step 3: Click 'Login' button",
+      "Step 4: Observe the error message"
+    ],
+    "expected_result": "Error message 'Your email or password is incorrect!' is displayed."
+  },
+  {
+    "test_id": "TC_005",
+    "test_name": "Verify user logout functionality",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. User is logged in with valid credentials.",
+    "test_steps": [
+      "Step 1: Click on 'Logout' button",
+      "Step 2: Verify that the user is navigated to the login page",
+      "Step 3: Verify that 'Login to your account' is visible"
+    ],
+    "expected_result": "User is logged out and redirected to the login page."
+  },
+  {
+    "test_id": "TC_006",
+    "test_name": "Verify contact us form submission",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Contact us' button",
+      "Step 2: Fill in Name 'TestUser', Email 'testuser@example.com', Subject 'Test Subject', Message 'This is a test message'",
+      "Step 3: Upload a file (optional)",
+      "Step 4: Click 'Submit' button",
+      "Step 5: Click 'OK' in the alert",
+      "Step 6: Verify success message"
+    ],
+    "expected_result": "Success message 'Success! Your details have been submitted successfully.' is displayed."
+  },
+  {
+    "test_id": "TC_007",
+    "test_name": "Verify test cases page navigation",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Test Cases' button",
+      "Step 2: Verify that the user is navigated to the test cases page",
+      "Step 3: Verify that the page displays test cases"
+    ],
+    "expected_result": "User is navigated to the test cases page and test cases are displayed."
+  },
+  {
+    "test_id": "TC_008",
+    "test_name": "Verify all products and product detail page",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Products' button",
+      "Step 2: Verify that the products list is displayed",
+      "Step 3: Click on 'View Product' for the first product",
+      "Step 4: Verify that the product detail page is displayed",
+      "Step 5: Verify product name, category, price, availability, condition, brand"
+    ],
+    "expected_result": "All products are listed and product detail page shows complete product information."
+  },
+  {
+    "test_id": "TC_009",
+    "test_name": "Verify search product with valid keyword",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Products' button",
+      "Step 2: Enter 'T-Shirt' in the search box",
+      "Step 3: Click 'Search' button",
+      "Step 4: Verify that the search results are displayed",
+      "Step 5: Verify that all products contain 'T-Shirt' in their name"
+    ],
+    "expected_result": "Search results are displayed showing products related to 'T-Shirt'."
+  },
+  {
+    "test_id": "TC_010",
+    "test_name": "Verify search product with invalid keyword",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Products' button",
+      "Step 2: Enter 'NonExistentProduct' in the search box",
+      "Step 3: Click 'Search' button",
+      "Step 4: Observe the search results"
+    ],
+    "expected_result": "No products are found and message 'No products found' is displayed."
+  },
+  {
+    "test_id": "TC_011",
+    "test_name": "Verify subscription in home page",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Scroll to the bottom of the home page",
+      "Step 2: Enter email 'subscriber@example.com' in the subscription input",
+      "Step 3: Click the subscribe arrow button",
+      "Step 4: Verify success message"
+    ],
+    "expected_result": "Success message 'You have been successfully subscribed!' is displayed."
+  },
+  {
+    "test_id": "TC_012",
+    "test_name": "Verify subscription in cart page",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Cart' button",
+      "Step 2: Scroll to the bottom of the cart page",
+      "Step 3: Enter email 'cartsubscriber@example.com' in the subscription input",
+      "Step 4: Click the subscribe arrow button",
+      "Step 5: Verify success message"
+    ],
+    "expected_result": "Success message 'You have been successfully subscribed!' is displayed on the cart page."
+  },
+  {
+    "test_id": "TC_013",
+    "test_name": "Verify add single product to cart",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Products' button",
+      "Step 2: Hover over the first product and click 'Add to cart'",
+      "Step 3: Click 'View Cart' button",
+      "Step 4: Verify that the product is in the cart"
+    ],
+    "expected_result": "The product is added to the cart and displayed in the cart page."
+  },
+  {
+    "test_id": "TC_014",
+    "test_name": "Verify add multiple products to cart",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Products' button",
+      "Step 2: Add the first product to cart",
+      "Step 3: Continue shopping and add the second product to cart",
+      "Step 4: Click 'View Cart' button",
+      "Step 5: Verify that both products are in the cart"
+    ],
+    "expected_result": "Both products are added to the cart and displayed in the cart page."
+  },
+  {
+    "test_id": "TC_015",
+    "test_name": "Verify product quantity in cart",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Products' button",
+      "Step 2: Click 'View Product' for a product",
+      "Step 3: Increase quantity to 4",
+      "Step 4: Click 'Add to cart' button",
+      "Step 5: Click 'View Cart' button",
+      "Step 6: Verify that the quantity is 4"
+    ],
+    "expected_result": "The product quantity in the cart is 4."
+  },
+  {
+    "test_id": "TC_016",
+    "test_name": "Verify remove product from cart",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. A product is added to the cart.",
+    "test_steps": [
+      "Step 1: Click on 'Cart' button",
+      "Step 2: Click the 'X' button to remove the product",
+      "Step 3: Verify that the cart is empty"
+    ],
+    "expected_result": "The product is removed from the cart and the cart is empty."
+  },
+  {
+    "test_id": "TC_017",
+    "test_name": "Verify place order: register while checkout",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. A product is added to the cart.",
+    "test_steps": [
+      "Step 1: Click on 'Cart' button",
+      "Step 2: Click 'Proceed To Checkout' button",
+      "Step 3: Click 'Register / Login' button",
+      "Step 4: Register a new account with valid details",
+      "Step 5: Click 'Proceed To Checkout' button",
+      "Step 6: Fill in the delivery address and place order",
+      "Step 7: Enter payment details and confirm order",
+      "Step 8: Verify order success message"
+    ],
+    "expected_result": "Order is placed successfully after registering during checkout."
+  },
+  {
+    "test_id": "TC_018",
+    "test_name": "Verify place order: register before checkout",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. A product is added to the cart.",
+    "test_steps": [
+      "Step 1: Register a new account before checkout",
+      "Step 2: Click on 'Cart' button",
+      "Step 3: Click 'Proceed To Checkout' button",
+      "Step 4: Fill in the delivery address and place order",
+      "Step 5: Enter payment details and confirm order",
+      "Step 6: Verify order success message"
+    ],
+    "expected_result": "Order is placed successfully after registering before checkout."
+  },
+  {
+    "test_id": "TC_019",
+    "test_name": "Verify place order: login before checkout",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. A product is added to the cart. A valid user account exists.",
+    "test_steps": [
+      "Step 1: Login with valid credentials before checkout",
+      "Step 2: Click on 'Cart' button",
+      "Step 3: Click 'Proceed To Checkout' button",
+      "Step 4: Fill in the delivery address and place order",
+      "Step 5: Enter payment details and confirm order",
+      "Step 6: Verify order success message"
+    ],
+    "expected_result": "Order is placed successfully after logging in before checkout."
+  },
+  {
+    "test_id": "TC_020",
+    "test_name": "Verify view category products",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Scroll to the left sidebar",
+      "Step 2: Click on 'Women' category",
+      "Step 3: Click on a subcategory like 'Dress'",
+      "Step 4: Verify that the category products are displayed"
+    ],
+    "expected_result": "Products belonging to the selected category are displayed."
+  },
+  {
+    "test_id": "TC_021",
+    "test_name": "Verify view brand products",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Scroll to the left sidebar",
+      "Step 2: Click on a brand like 'Polo'",
+      "Step 3: Verify that the brand products are displayed"
+    ],
+    "expected_result": "Products belonging to the selected brand are displayed."
+  },
+  {
+    "test_id": "TC_022",
+    "test_name": "Verify search products and verify cart after login",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. A valid user account exists.",
+    "test_steps": [
+      "Step 1: Search for a product and add it to cart",
+      "Step 2: Click 'Cart' and verify the product is in the cart",
+      "Step 3: Logout",
+      "Step 4: Login with valid credentials",
+      "Step 5: Click 'Cart' and verify the product is still in the cart"
+    ],
+    "expected_result": "The product added to the cart before login remains in the cart after login."
+  },
+  {
+    "test_id": "TC_023",
+    "test_name": "Verify add review on product",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Click on 'Products' button",
+      "Step 2: Click 'View Product' for a product",
+      "Step 3: Scroll to the review section",
+      "Step 4: Enter name 'TestUser', email 'testuser@example.com', and review 'Great product!'",
+      "Step 5: Click 'Submit' button",
+      "Step 6: Verify success message"
+    ],
+    "expected_result": "Success message 'Thank you for your review.' is displayed."
+  },
+  {
+    "test_id": "TC_024",
+    "test_name": "Verify add to cart from recommended items",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Scroll to the bottom of the home page",
+      "Step 2: Verify that 'RECOMMENDED ITEMS' are visible",
+      "Step 3: Click 'Add to cart' on a recommended product",
+      "Step 4: Click 'View Cart' button",
+      "Step 5: Verify that the product is in the cart"
+    ],
+    "expected_result": "The recommended product is added to the cart successfully."
+  },
+  {
+    "test_id": "TC_025",
+    "test_name": "Verify address details in checkout page",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. User is logged in with valid credentials and a product is added to the cart.",
+    "test_steps": [
+      "Step 1: Click on 'Cart' button",
+      "Step 2: Click 'Proceed To Checkout' button",
+      "Step 3: Verify that the delivery address and billing address are displayed",
+      "Step 4: Verify that the address details match the user's account details"
+    ],
+    "expected_result": "The delivery and billing addresses are displayed correctly in the checkout page."
+  },
+  {
+    "test_id": "TC_026",
+    "test_name": "Verify download invoice after purchase",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com. User is logged in and a product is added to the cart.",
+    "test_steps": [
+      "Step 1: Proceed to checkout and place an order",
+      "Step 2: Enter payment details and confirm order",
+      "Step 3: Click 'Download Invoice' button",
+      "Step 4: Verify that the invoice file is downloaded",
+      "Step 5: Verify that the invoice contains order details"
+    ],
+    "expected_result": "Invoice is downloaded successfully and contains the order details."
+  },
+  {
+    "test_id": "TC_027",
+    "test_name": "Verify scroll up/down functionality with arrow button",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Scroll down to the bottom of the page",
+      "Step 2: Click the arrow button to scroll up",
+      "Step 3: Verify that the page scrolls up to the top",
+      "Step 4: Verify that the header is visible"
+    ],
+    "expected_result": "The page scrolls up to the top when the arrow button is clicked."
+  },
+  {
+    "test_id": "TC_028",
+    "test_name": "Verify scroll up/down functionality without arrow button",
+    "test_type": "UI",
+    "preconditions": "Browser is open and navigated to https://automationexercise.com",
+    "test_steps": [
+      "Step 1: Scroll down to the bottom of the page",
+      "Step 2: Scroll up manually using the mouse wheel or scrollbar",
+      "Step 3: Verify that the page scrolls up to the top",
+      "Step 4: Verify that the header is visible"
+    ],
+    "expected_result": "The page scrolls up to the top when scrolled manually."
+  },
+  {
+    "test_id": "TC_029",
+    "test_name": "Verify GET all products list API",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible",
+    "test_steps": [
+      "Step 1: Send a GET request to https://automationexercise.com/api/productsList",
+      "Step 2: Verify the response code is 200",
+      "Step 3: Verify the response contains a list of products"
+    ],
+    "expected_result": "Response code is 200 and the response contains a list of products."
+  },
+  {
+    "test_id": "TC_030",
+    "test_name": "Verify POST to all products list API (method not allowed)",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/productsList",
+      "Step 2: Verify the response code is 405",
+      "Step 3: Verify the response message indicates method not allowed"
+    ],
+    "expected_result": "Response code is 405 and the response message indicates 'This request method is not supported.'"
+  },
+  {
+    "test_id": "TC_031",
+    "test_name": "Verify GET all brands list API",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible",
+    "test_steps": [
+      "Step 1: Send a GET request to https://automationexercise.com/api/brandsList",
+      "Step 2: Verify the response code is 200",
+      "Step 3: Verify the response contains a list of brands"
+    ],
+    "expected_result": "Response code is 200 and the response contains a list of brands."
+  },
+  {
+    "test_id": "TC_032",
+    "test_name": "Verify PUT to all brands list API (method not allowed)",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible",
+    "test_steps": [
+      "Step 1: Send a PUT request to https://automationexercise.com/api/brandsList",
+      "Step 2: Verify the response code is 405",
+      "Step 3: Verify the response message indicates method not allowed"
+    ],
+    "expected_result": "Response code is 405 and the response message indicates 'This request method is not supported.'"
+  },
+  {
+    "test_id": "TC_033",
+    "test_name": "Verify POST to search product with search_product parameter",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/searchProduct with parameter search_product=tshirt",
+      "Step 2: Verify the response code is 200",
+      "Step 3: Verify the response contains products matching the search"
+    ],
+    "expected_result": "Response code is 200 and the response contains products matching the search term."
+  },
+  {
+    "test_id": "TC_034",
+    "test_name": "Verify POST to search product without search_product parameter",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/searchProduct without any parameters",
+      "Step 2: Verify the response code is 400",
+      "Step 3: Verify the response message indicates 'Bad request, search_product parameter is missing in POST request.'"
+    ],
+    "expected_result": "Response code is 400 and the response message indicates the missing parameter."
+  },
+  {
+    "test_id": "TC_035",
+    "test_name": "Verify POST to verify login with valid credentials",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible. A valid user account exists with email 'testuser@example.com' and password 'Test@123'.",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/verifyLogin with parameters email=testuser@example.com and password=Test@123",
+      "Step 2: Verify the response code is 200",
+      "Step 3: Verify the response message indicates 'User exists!'"
+    ],
+    "expected_result": "Response code is 200 and the response message indicates 'User exists!'"
+  },
+  {
+    "test_id": "TC_036",
+    "test_name": "Verify POST to verify login without email parameter",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/verifyLogin with only password parameter",
+      "Step 2: Verify the response code is 400",
+      "Step 3: Verify the response message indicates 'Bad request, email or password parameter is missing in POST request.'"
+    ],
+    "expected_result": "Response code is 400 and the response message indicates the missing parameter."
+  },
+  {
+    "test_id": "TC_037",
+    "test_name": "Verify DELETE to verify login (method not allowed)",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible",
+    "test_steps": [
+      "Step 1: Send a DELETE request to https://automationexercise.com/api/verifyLogin",
+      "Step 2: Verify the response code is 405",
+      "Step 3: Verify the response message indicates 'This request method is not supported.'"
+    ],
+    "expected_result": "Response code is 405 and the response message indicates method not allowed."
+  },
+  {
+    "test_id": "TC_038",
+    "test_name": "Verify POST to verify login with invalid credentials",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/verifyLogin with parameters email=wrong@example.com and password=wrongpass",
+      "Step 2: Verify the response code is 404",
+      "Step 3: Verify the response message indicates 'User not found!'"
+    ],
+    "expected_result": "Response code is 404 and the response message indicates 'User not found!'"
+  },
+  {
+    "test_id": "TC_039",
+    "test_name": "Verify POST to create/register user account",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible. No existing account with email 'newuser@example.com'.",
+    "test_steps": [
+      "Step 1: Send a POST request to https://automationexercise.com/api/createAccount with parameters name=NewUser, email=newuser@example.com, password=Test@123, title=Mr, birth_date=01, birth_month=January, birth_year=1990, firstname=New, lastname=User, company=TestCompany, address1=123 Test St, address2=Suite 1, country=United States, zipcode=12345, state=California, city=Los Angeles, mobile_number=1234567890",
+      "Step 2: Verify the response code is 201",
+      "Step 3: Verify the response message indicates 'User created successfully!'"
+    ],
+    "expected_result": "Response code is 201 and the response message indicates 'User created successfully!'"
+  },
+  {
+    "test_id": "TC_040",
+    "test_name": "Verify DELETE to delete user account",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible. A user account with email 'deleteuser@example.com' exists.",
+    "test_steps": [
+      "Step 1: Send a DELETE request to https://automationexercise.com/api/deleteAccount with parameter email=deleteuser@example.com",
+      "Step 2: Verify the response code is 200",
+      "Step 3: Verify the response message indicates 'Account deleted successfully!'"
+    ],
+    "expected_result": "Response code is 200 and the response message indicates 'Account deleted successfully!'"
+  },
+  {
+    "test_id": "TC_041",
+    "test_name": "Verify PUT to update user account",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible. A user account with email 'updateuser@example.com' exists.",
+    "test_steps": [
+      "Step 1: Send a PUT request to https://automationexercise.com/api/updateAccount with parameters name=UpdatedUser, email=updateuser@example.com, password=NewPass123, title=Mr, birth_date=01, birth_month=January, birth_year=1990, firstname=Updated, lastname=User, company=NewCompany, address1=456 New St, address2=Suite 2, country=United States, zipcode=54321, state=New York, city=New York, mobile_number=0987654321",
+      "Step 2: Verify the response code is 200",
+      "Step 3: Verify the response message indicates 'User updated successfully!'"
+    ],
+    "expected_result": "Response code is 200 and the response message indicates 'User updated successfully!'"
+  },
+  {
+    "test_id": "TC_042",
+    "test_name": "Verify GET user account detail by email",
+    "test_type": "API",
+    "preconditions": "API endpoint is accessible. A user account with email 'detailuser@example.com' exists.",
+    "test_steps": [
+      "Step 1: Send a GET request to https://automationexercise.com/api/getUserDetailByEmail?email=detailuser@example.com",
+      "Step 2: Verify the response code is 200",
+      "Step 3: Verify the response contains the user's account details"
+    ],
+    "expected_result": "Response code is 200 and the response contains the user's account details."
+  }
+]
