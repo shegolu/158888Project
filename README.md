@@ -17,7 +17,7 @@ This repository contains test generation, execution and AI repair code, together
 | `baselines/raw_initial/` | Fixed snapshots of the 42 initially generated raw scripts |
 | `manual_tests/` | The 42 manual versions previously stored directly under `generated_tests/` |
 | `generated_tests/case_raw/` | Working copies used for later execution and repair; some differ from the initial versions |
-| `generated_tests/case_ai_final/` | Existing final versions of 17 selected comparison cases; see its README for sources |
+| `generated_tests/case_ai_final/` | Existing final versions of 17 selected comparison cases; see `sources.json` for sources |
 | `baselines/preservation.json` | File protection hashes for the initial snapshots and manual versions |
 
 The removal of `generated_tests/test_tc_*.py` and addition of `manual_tests/` represent a file migration.
