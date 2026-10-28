@@ -343,7 +343,7 @@ def test_interrupted_report_marks_partial_regression(tmp_path):
     state = {'run_id': 'interrupted', 'finished': False, 'interrupted': True,
              'interruption_reason': 'Stopped for diagnosis', 'regression_planned_count': 42}
     export(tmp_path, state)
-    report = (tmp_path / 'summary_zh.md').read_text(encoding='utf-8')
-    assert '已中断' in report
+    report = (tmp_path / 'summary.md').read_text(encoding='utf-8')
+    assert 'Interrupted' in report
     assert '0/42' in report
-    assert '执行失败数不等于脚本缺陷数' in report
+    assert 'Execution failures do not equal script defects' in report

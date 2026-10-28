@@ -102,50 +102,50 @@ def export(directory, state):
                          for name in ['prompt_tokens', 'completion_tokens', 'total_tokens']}
     write_json(directory / 'metrics.json', metrics)
     state['metrics'] = metrics
-    timestamp = datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d %H:%M:%S 北京时间')
+    timestamp = datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d %H:%M:%S UTC+08:00')
     m = metrics
-    status = '完成' if state.get('finished') else ('已中断' if state.get('interrupted') or state.get('ended_at_utc') else '进行中')
-    lines = ['# 本次自动修复实验汇总', '', f"运行编号：`{state['run_id']}`", '',
-             f"更新时间：{timestamp}；流程状态：{status}。", '',
-             '执行失败数不等于脚本缺陷数；环境、测试数据、收集及准备错误需单独分析。', '',
-             '以下数字仅属于本次真实执行；不混入历史运行或本地模拟验证。', '',
-             '| 阶段 | 总数 | 通过 | 失败 | 跳过 |', '| --- | ---: | ---: | ---: | ---: |']
-    for label, key in [('raw 首次运行', 'initial'), ('修改后的全量回归', 'regression'), ('当前最新已观察结果', 'final_observed')]:
+    status = 'Completed' if state.get('finished') else ('Interrupted' if state.get('interrupted') or state.get('ended_at_utc') else 'In progress')
+    lines = ['# Automated repair experiment summary', '', f"Run ID: `{state['run_id']}`", '',
+             f"Updated: {timestamp}; workflow status: {status}.", '',
+             'Execution failures do not equal script defects; environment, test data, collection and setup errors require separate analysis.', '',
+             'These figures describe this execution only; historical runs and local simulated validation are excluded.', '',
+             '| Stage | Total | Passed | Failed | Skipped |', '| --- | ---: | ---: | ---: | ---: |']
+    for label, key in [('Initial raw execution', 'initial'), ('Full regression after changes', 'regression'), ('Latest observed results', 'final_observed')]:
         c = m[key]
         lines.append(f"| {label} | {c['total']} | {c['passed']} | {c['failed']} | {c['skipped']} |")
     if not state.get('finished'):
         planned = state.get('regression_planned_count', len(types))
-        lines += ['', f"流程尚未完成；回归仅记录 {len(regression)}/{planned} 条，不代表完整修复后结果。"]
+        lines += ['', f"The workflow is incomplete; regression records cover only {len(regression)}/{planned} cases and do not represent complete post-repair results."]
     if state.get('interruption_reason'):
-        lines += ['', '中断原因：' + state['interruption_reason']]
-    lines += ['', '首次执行分类（保留该次执行器的原始判断；不代表已确认的根因）：', '',
-              '| 分类 | 数量 |', '| --- | ---: |']
+        lines += ['', 'Interruption reason: ' + state['interruption_reason']]
+    lines += ['', 'Initial execution classifications (original executor judgments, not confirmed root causes):', '',
+              '| Classification | Count |', '| --- | ---: |']
     for category, count in m['initial']['classifications'].items():
         lines.append(f'| {category} | {count} |')
-    lines += ['', '## 实际修复了多少', '',
-              f"- AI 分析了 {m['analyzed_cases']} 条用例，共 {m['analyses']} 次，耗时 {m['ai_seconds']} 秒。",
-              f"- AI 输出了 {m['proposals']} 份含代码的提案；实际修改 {m['modified_cases']} 条用例，共应用 {m['applied_rounds']} 轮修改。",
-              f"- 实际修改的用例中，最近一次修复重跑：通过 {m['modified_retest_passed']} 条、失败 {m['modified_retest_failed']} 条。",
-              f"- 实际修改的用例在最新结果中：通过 {m['modified_final_passed']} 条、失败 {m['modified_final_failed']} 条。",
-              f"- {m['human_review_cases']} 条用例需要人工核查（包括环境或数据问题、未提供修复代码及被拒绝的提案）。", '',
-              '未发生修改的用例不算作自动修复成功；网络恢复导致的通过也不能单独归因于代码修复。', '',
-              '## 按用例查看', '',
-              '| 用例 | 类型 | 首次结果 | AI 分类 | 应用修改轮数 | 修复重跑 | 全量回归 | 最新结果 |',
+    lines += ['', '## Applied repairs', '',
+              f"- AI analyzed {m['analyzed_cases']} cases in {m['analyses']} analyses, taking {m['ai_seconds']} seconds.",
+              f"- AI produced {m['proposals']} code proposals; {m['modified_cases']} cases were modified in {m['applied_rounds']} applied repair rounds.",
+              f"- Latest repair reruns for modified cases: {m['modified_retest_passed']} passed and {m['modified_retest_failed']} failed.",
+              f"- Latest observed results for modified cases: {m['modified_final_passed']} passed and {m['modified_final_failed']} failed.",
+              f"- {m['human_review_cases']} cases require human review, including environment or data issues, missing repair code and rejected proposals.", '',
+              'Unmodified cases do not count as successful automatic repairs; a pass after network recovery cannot be attributed to a code repair alone.', '',
+              '## Results by case', '',
+              '| Case | Type | Initial result | AI category | Applied rounds | Repair rerun | Full regression | Latest result |',
               '| --- | --- | --- | --- | ---: | --- | --- | --- |']
-    translate = {'passed': '通过', 'failed': '失败', 'skipped': '跳过', 'not_run': '未运行'}
+    translate = {'passed': 'Passed', 'failed': 'Failed', 'skipped': 'Skipped', 'not_run': 'Not run'}
     for r in rows:
         lines.append(f"| {r['test_id']} | {r['test_type']} | {translate[r['initial_status']]} | {r['latest_ai_category']} | {r['applied_rounds']} | {translate[r['retest_status']]} | {translate[r['regression_status']]} | {translate[r['final_observed_status']]} |")
-    lines += ['', '## 证据位置', '',
-              '- `configuration.json`、`inputs/`：运行环境、配置、全部初始源码、用例及框架版本快照。',
-              '- `events.jsonl`：按时间追加的阶段开始、结束及每条测试事件。',
-              '- `initial/`：每条 raw 首次执行的结果、日志、源代码、失败截图、DOM 和浏览器追踪。',
-              '- `repairs/<用例>/<轮次>/`：AI 请求和响应、分析、修复决定、原代码、候选代码、差异及重跑记录。',
-              '- `regression/`：发生代码修改后，全量回归的逐条记录。',
-              '- `cases.csv`：一条用例一行，适合汇总；`stage_results.csv`：每次执行一行，适合分析各轮耗时和变化。',
-              '- `metrics.json`：程序计算的统计；`run.json`：完整关联数据。', '',
-              '未运行阶段标记为“未运行”，不会把首次执行结果冒充修复后回归结果。', '',
-              f"手工版本和固定基线核对：{state.get('protected_files_unchanged', '流程结束后核对')}。"]
-    (directory / 'summary_zh.md').write_text(redact('\n'.join(lines)), encoding='utf-8')
+    lines += ['', '## Evidence locations', '',
+              '- `configuration.json`, `inputs/`: environment, configuration, initial sources, cases and framework snapshots.',
+              '- `events.jsonl`: chronological stage start, stage end and individual test events.',
+              '- `initial/`: initial raw execution results, logs, source, failure screenshots, DOM and browser traces.',
+              '- `repairs/<case>/<round>/`: AI requests and responses, analysis, repair decisions, original and candidate code, diffs and rerun records.',
+              '- `regression/`: individual full regression records after code changes.',
+              '- `cases.csv`: one row per case for summaries; `stage_results.csv`: one row per execution for timing and change analysis.',
+              '- `metrics.json`: computed statistics; `run.json`: complete linked data.', '',
+              'Unexecuted stages are marked "Not run"; initial results are not presented as post-repair regression results.', '',
+              f"Manual version and fixed baseline integrity: {state.get('protected_files_unchanged', 'Checked when the workflow ends')}."]
+    (directory / 'summary.md').write_text(redact('\n'.join(lines)), encoding='utf-8')
 
 
 def _counts(results):
