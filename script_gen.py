@@ -2,14 +2,18 @@ import json
 import os
 import time
 from openai import OpenAI
+from testflow.common import ROOT, RAW, load_environment
+from testflow.layout import prepare
 
 
-# Initialize the DeepSeek client
-# Replace YOUR_API_KEY_HERE with your actual API key
-client = OpenAI(
-    api_key=os.environ.get("DEEPSEEK_API_KEY", ""),
-    base_url="https://api.deepseek.com"
-)
+def get_client():
+    """Read credentials at call time, never from source-code literals."""
+    load_environment()
+    key = os.environ.get("DEEPSEEK_API_KEY")
+    if not key:
+        raise ValueError("Configure DEEPSEEK_API_KEY in the environment or project .env")
+    return OpenAI(api_key=key, base_url=os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
+                  timeout=90, max_retries=1)
 
 
 def generate_playwright_script(test_case: dict) -> str:
@@ -40,7 +44,7 @@ def generate_playwright_script(test_case: dict) -> str:
     """
 
     try:
-        response = client.chat.completions.create(
+        response = get_client().chat.completions.create(
             model="deepseek-chat",
             messages=[
                 {"role": "system", "content": "You are a Python test automation engineer. Output raw Python code only."},
@@ -84,7 +88,7 @@ def generate_api_script(test_case: dict) -> str:
     """
 
     try:
-        response = client.chat.completions.create(
+        response = get_client().chat.completions.create(
             model="deepseek-chat",
             messages=[
                 {"role": "system", "content": "You are a Python API test automation engineer. Output raw Python code only."},
@@ -114,10 +118,11 @@ def clean_code(code: str) -> str:
 
 
 def main():
+    prepare(ROOT)
     print("[INFO] Loading generated test cases...")
 
     try:
-        with open("generated_test_cases.json", "r", encoding="utf-8") as f:
+        with open(ROOT / "generated_test_cases.json", "r", encoding="utf-8") as f:
             test_cases = json.load(f)
     except FileNotFoundError:
         print("[ERROR] generated_test_cases.json not found. Please run test_case_gen.py first.")
@@ -126,7 +131,7 @@ def main():
     print(f"[INFO] Loaded {len(test_cases)} test cases.")
 
     # Create output directory
-    os.makedirs("generated_tests", exist_ok=True)
+    RAW.mkdir(parents=True, exist_ok=True)
 
     print("[INFO] Generating test scripts...")
 
@@ -135,6 +140,12 @@ def main():
         test_type = case.get("test_type", "UI")
 
         print(f"[INFO] Processing {test_id} ({test_type})...")
+        if not test_id.startswith('TC_') or not test_id[3:].isdigit():
+            raise ValueError('Invalid test ID')
+        filename = RAW / f"test_{test_id.lower()}.py"
+        if filename.exists():
+            print(f"[INFO] Preserving existing {filename}; use the repair workflow for changes.")
+            continue
 
         try:
             if test_type.upper() == "UI":
@@ -151,8 +162,7 @@ def main():
 
             script_code = clean_code(script_code)
 
-            filename = f"generated_tests/test_{test_id.lower()}.py"
-            with open(filename, "w", encoding="utf-8") as f:
+            with open(filename, "x", encoding="utf-8") as f:
                 f.write(script_code)
 
             print(f"[SUCCESS] Saved to {filename}")
@@ -163,7 +173,7 @@ def main():
         except Exception as e:
             print(f"[ERROR] Failed to generate script for {test_id}: {e}")
 
-    print("[INFO] All test scripts generated. Check the 'generated_tests' folder.")
+    print("[INFO] New scripts saved to generated_tests/case_raw; existing scripts preserved.")
 
 
 if __name__ == "__main__":

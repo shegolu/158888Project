@@ -1,0 +1,4 @@
+# Keep the protected snapshots byte-for-byte consistent with preservation.json.
+baselines/raw_initial/*.py -text
+manual_tests/*.py -text
+generated_tests/case_ai_final/*.py -text

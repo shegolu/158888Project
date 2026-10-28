@@ -1,14 +1,5 @@
 import json
-import os
-import time
-from openai import OpenAI
-
-# Initialize the DeepSeek client
-# Replace YOUR_API_KEY_HERE with your actual API key
-client = OpenAI(
-    api_key=os.environ.get("DEEPSEEK_API_KEY", "key"),
-    base_url="https://api.deepseek.com"
-)
+from script_gen import get_client
 
 
 def generate_test_cases(website_url: str, feature_description: str) -> list:
@@ -96,7 +87,7 @@ def generate_test_cases(website_url: str, feature_description: str) -> list:
     """
 
     try:
-        response = client.chat.completions.create(
+        response = get_client().chat.completions.create(
             model="deepseek-chat",
             messages=[
                 {"role": "system", "content": "You are a senior QA engineer. Output pure valid JSON only."},

@@ -1,3 +1,12 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+.venv/
+.env
+runs/
+.testflow.lock
+node_modules/
+.pptx-build/
+.codex-finalizer/
+output/revision3_render/
+output/revision4_render/

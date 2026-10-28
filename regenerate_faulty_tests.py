@@ -2,6 +2,10 @@
 import json
 import os
 import time
+from datetime import datetime, timezone
+import uuid
+from testflow.common import ROOT
+from testflow.layout import prepare
 
 # Import the existing generation functions from your original script
 from script_gen import generate_api_script, generate_playwright_script, clean_code
@@ -11,10 +15,11 @@ TARGET_IDS = ["TC_032", "TC_039", "TC_040", "TC_041", "TC_042"]
 
 
 def main():
+    prepare(ROOT)
     print("[INFO] Loading generated test cases from JSON...")
 
     try:
-        with open("generated_test_cases.json", "r", encoding="utf-8") as f:
+        with open(ROOT / "generated_test_cases.json", "r", encoding="utf-8") as f:
             test_cases = json.load(f)
     except FileNotFoundError:
         print("[ERROR] generated_test_cases.json not found.")
@@ -24,7 +29,8 @@ def main():
     print(f"[INFO] Targeting faulty test cases: {TARGET_IDS}")
 
     # Ensure output directory exists
-    os.makedirs("generated_tests", exist_ok=True)
+    output = ROOT / 'runs' / ('regeneration-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + '-' + uuid.uuid4().hex[:8])
+    output.mkdir(parents=True)
 
     for case in test_cases:
         test_id = case.get("test_id")
@@ -52,11 +58,13 @@ def main():
 
             clean_script = clean_code(script_code)
 
-            filename = f"generated_tests/test_{test_id.lower()}.py"
-            with open(filename, "w", encoding="utf-8") as f:
+            if not test_id.startswith('TC_') or not test_id[3:].isdigit():
+                raise ValueError('Invalid test ID')
+            filename = output / f"test_{test_id.lower()}.py"
+            with open(filename, "x", encoding="utf-8") as f:
                 f.write(clean_script)
 
-            print(f"[SUCCESS] Overwrote {filename}")
+            print(f"[SUCCESS] Proposal saved to {filename}; no working script overwritten")
 
             time.sleep(0.5)  # Rate limiting
 

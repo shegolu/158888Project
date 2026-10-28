@@ -1,0 +1,124 @@
+{
+  "description": "Existing comparison sources, copied without generating or editing tests.",
+  "cases": [
+    {
+      "test_id": "TC_001",
+      "file": "test_tc_001.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_001/round1/candidate.py",
+      "sha256": "86fa00da6ffa279946113d6d64f6d4f931e330856e2da570be31d46ca70a7c71"
+    },
+    {
+      "test_id": "TC_005",
+      "file": "test_tc_005.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_005/round1/candidate.py",
+      "sha256": "ff7002b286acfdfa78d2770152f8e81eba6c3725abf69b216ff6264c042c5c41"
+    },
+    {
+      "test_id": "TC_006",
+      "file": "test_tc_006.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_006/round1/candidate.py",
+      "sha256": "508b51ea767df3cbdc722343686bee91bbca13d5cdb01c23cfb4db5c7f1c96b7"
+    },
+    {
+      "test_id": "TC_007",
+      "file": "test_tc_007.py",
+      "version_type": "manual_patch",
+      "source": "runs/manual_patch_TC_007/after.py",
+      "sha256": "f82bebed4cd48dfff45641204b0217d65e91ee51df4a19c35e1e37582b60fdc6"
+    },
+    {
+      "test_id": "TC_010",
+      "file": "test_tc_010.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_010/round1/candidate.py",
+      "sha256": "71fc00bc823c465fa7b7cff9b370baaf30e88e0e76100fe983d11bdc811448ad"
+    },
+    {
+      "test_id": "TC_012",
+      "file": "test_tc_012.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T102345Z-28e0e222/cases/TC_012/round1/candidate.py",
+      "sha256": "3df9377621a238f0b03d34a734549b915f1fd7e5809f5d533ca351e17228da34"
+    },
+    {
+      "test_id": "TC_013",
+      "file": "test_tc_013.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_013/round1/candidate.py",
+      "sha256": "b59f5b38603bea70db5c21b7fd1367607a05094707fd0c5169e778997fa2c8b7"
+    },
+    {
+      "test_id": "TC_014",
+      "file": "test_tc_014.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_014/round1/candidate.py",
+      "sha256": "046243b00d4d0757e3da619232e81707b796da87b5fe2acd2dfcaac3a48545da"
+    },
+    {
+      "test_id": "TC_015",
+      "file": "test_tc_015.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_015/round1/candidate.py",
+      "sha256": "a88d3ee8a7034e34811c3f36bfb74018ef087d580c953ab27d141edb65232bcd"
+    },
+    {
+      "test_id": "TC_017",
+      "file": "test_tc_017.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_017/round1/candidate.py",
+      "sha256": "849905d107cbac2953d1ea936076a53a72d03ec5a02c92b9e72fab5704571d15"
+    },
+    {
+      "test_id": "TC_018",
+      "file": "test_tc_018.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_018/round1/candidate.py",
+      "sha256": "5d3058efe2bea0c3819a77058d4bab7d0b365c5689cb8390aa6bda2e0c949fe1"
+    },
+    {
+      "test_id": "TC_019",
+      "file": "test_tc_019.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_019/round1/candidate.py",
+      "sha256": "1db09934ca730b42f13269238dda469af943c7f39dd5bac503caa75e0d7e6208"
+    },
+    {
+      "test_id": "TC_022",
+      "file": "test_tc_022.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_022/round1/candidate.py",
+      "sha256": "24a6477e861648999ae77b4bd7c208894fb45604dace1a86b258ecc24d55f9a6"
+    },
+    {
+      "test_id": "TC_023",
+      "file": "test_tc_023.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_023/round1/candidate.py",
+      "sha256": "98469a18b4c06fb26fa74f9903d90409ae16c37d58149d56118720116ec8d09c"
+    },
+    {
+      "test_id": "TC_025",
+      "file": "test_tc_025.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_025/round1/candidate.py",
+      "sha256": "2432898c8cf66af43b9eab55981d4fdcc3637f310bf87f22ca0e3d1a62e1df7e"
+    },
+    {
+      "test_id": "TC_026",
+      "file": "test_tc_026.py",
+      "version_type": "ai_repair_candidate",
+      "source": "runs/aggressive_ai_repair_20261017T121002Z-bcd03554/cases/TC_026/round1/candidate.py",
+      "sha256": "c94c8ca76abadcfeb61c665c73ef10ac30fc73632047de9307d48789cd47c178"
+    },
+    {
+      "test_id": "TC_028",
+      "file": "test_tc_028.py",
+      "version_type": "unmodified_ai_original",
+      "source": "generated_tests/case_raw/test_tc_028.py",
+      "sha256": "1354386734078438a2f76d4e2024d823b36c8e24e2ea22b981a3ec5a4af22033"
+    }
+  ]
+}
